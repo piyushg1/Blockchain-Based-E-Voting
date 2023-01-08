@@ -100,7 +100,7 @@
   "sourceMap": "25:1210:0:-;;;493:101;8:9:-1;5:2;;;30:1;27;20:12;5:2;493:101:0;530:27;;;;;;;;;;;;;;;;;;;:12;;;:27;;;:::i;:::-;567:20;;;;;;;;;;;;;;;;;;;:12;;;:20;;;:::i;:::-;25:1210;;600:154;654:15;;:17;;;;;;;;;;;;;711:36;;;;;;;;;721:15;;711:36;;;;738:5;711:36;;;;745:1;711:36;;;681:10;:27;692:15;;681:27;;;;;;;;;;;:66;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;600:154;:::o;25:1210::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
   "deployedSourceMap": "25:1210:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;760:473;;8:9:-1;5:2;;;30:1;27;20:12;5:2;760:473:0;;;;;;;;;;;;;;;;;;;;;;;;;;384:30;;8:9:-1;5:2;;;30:1;27;20:12;5:2;384:30:0;;;;;;;;;;;;;;;;;;;;;;;301:47;;8:9:-1;5:2;;;30:1;27;20:12;5:2;301:47:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;301:47:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;210:38;;8:9:-1;5:2;;;30:1;27;20:12;5:2;210:38:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;760:473;872:6;:18;879:10;872:18;;;;;;;;;;;;;;;;;;;;;;;;;871:19;863:28;;;;;;;;962:1;947:12;:16;:51;;;;;983:15;;967:12;:31;;947:51;939:60;;;;;;;;1070:4;1049:6;:18;1056:10;1049:18;;;;;;;;;;;;;;;;:25;;;;;;;;;;;;;;;;;;1124:10;:24;1135:12;1124:24;;;;;;;;;;;:34;;;:36;;;;;;;;;;;;;1213:12;1202:24;;;;;;;;;;760:473;:::o;384:30::-;;;;:::o;301:47::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;210:38::-;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "pragma solidity ^0.4.2;\n\ncontract Election {\n    // Model a Candidate\n    struct Candidate {\n        uint256 id;\n        string name;\n        uint256 voteCount;\n    }\n\n    // Store accounts that have voted\n    mapping(address => bool) public voters;\n    // Store Candidates\n    // Fetch Candidate\n    mapping(uint256 => Candidate) public candidates;\n    // Store Candidates Count\n    uint256 public candidatesCount;\n\n    // voted event\n    event votedEvent(uint256 indexed _candidateId);\n\n    function Election() public {\n        addCandidate(\"Uncle Chips\");\n        addCandidate(\"Lays\");\n    }\n\n    function addCandidate(string _name) private {\n        candidatesCount++;\n        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);\n    }\n\n    function vote(uint256 _candidateId) public {\n        // require that they haven't voted before\n        require(!voters[msg.sender]);\n\n        // require a valid candidate\n        require(_candidateId > 0 && _candidateId <= candidatesCount);\n\n        // record that voter has voted\n        voters[msg.sender] = true;\n\n        // update candidate vote Count\n        candidates[_candidateId].voteCount++;\n\n        // trigger voted event\n        votedEvent(_candidateId);\n    }\n}\n",
-  "sourcePath": "D:\\VIT\\Sem1\\Project\\code\\fresh\\election-1-smoke-test\\contracts\\Election.sol",
+  "sourcePath": "D:\\VIT\\Sem1\\Project\\code\\fresh\\election-final\\contracts\\Election.sol",
   "ast": {
     "absolutePath": "project:/contracts/Election.sol",
     "exportedSymbols": {
@@ -2716,12 +2716,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xBc6f5adf572f939199Ea17215DA4CbC64F170bAF",
-      "transactionHash": "0x053edd9152b1075ce23fe4180c436520aed3f898f22bd196ff13f14bdfb681a6"
+      "address": "0x3b0Fb4c5129C0D2DdC675bc1be99aB6547a7faf5",
+      "transactionHash": "0x5f27e71173a8d5016cf691a2f03ac53c49c98eef6e0fbc5194e7478eb4586326"
     }
   },
   "schemaVersion": "3.4.10",
-  "updatedAt": "2023-01-08T16:34:30.532Z",
+  "updatedAt": "2023-01-08T16:59:58.286Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
