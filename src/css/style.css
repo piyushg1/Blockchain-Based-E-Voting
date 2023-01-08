@@ -1,0 +1,16 @@
+body {
+    background-image: url('./img.svg');
+    /* You must set a specified height */
+    background-position: center bottom;
+    /* Center the image */
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Do not repeat the image */
+    /* background-size: cover; */
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 50px;
+}
